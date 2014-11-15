@@ -1,0 +1,93 @@
+(pprof) disasm CompareContainersLengthReuse
+Total: 198 samples
+ROUTINE ====================== convertT2I.CompareContainersLengthReuse
+    29    159 samples (flat, cumulative) 80.3% of total
+-------------------- /data/golang/src/convertT2I/convertT2I.go
+     .      .    79: func CompareContainersLengthReuse(value []byte) bool{
+     .      .      442ea0: FS MOVQ FS:0xfffffff0, CX
+     .      .      442ea9: CMPQ 0(CX), SP
+     .      .      442eac: JA 0x442eb5
+     .      .      442eae: CALL runtime.morestack32_noctxt(SB)
+     .      .      442eb3: JMP convertT2I.CompareContainersLengthReuse(SB)
+     .      .      442eb5: SUBQ $0x78, SP
+     1      1    80: var c1 Container
+     1      1      442eb9: MOVQ $0x0, 0x50(SP)
+     .      .      442ec2: MOVQ $0x0, 0x58(SP)
+     .      .    81: var c2 Container
+     .      .      442ecb: MOVQ $0x0, 0x40(SP)
+     .      .      442ed4: MOVQ $0x0, 0x48(SP)
+    10    123    83: c1 = MakeSliceContainer(value)
+     .      .      442edd: MOVQ 0x80(SP), BX
+     .      .      442ee5: MOVQ BX, 0(SP)
+     .      .      442ee9: MOVQ 0x88(SP), BX
+     .      .      442ef1: MOVQ BX, 0x8(SP)
+     .      .      442ef6: MOVQ 0x90(SP), BX
+     1      1      442efe: MOVQ BX, 0x10(SP)
+     1      5      442f03: CALL convertT2I.MakeSliceContainer(SB)
+     .      .      442f08: MOVQ 0x18(SP), BX
+     2      2      442f0d: MOVQ BX, 0x60(SP)
+     1      1      442f12: MOVQ 0x20(SP), BX
+     .      .      442f17: MOVQ BX, 0x68(SP)
+     1      1      442f1c: MOVQ 0x28(SP), BX
+     .      .      442f21: MOVQ BX, 0x70(SP)
+     2      2      442f26: MOVQ $0x5188a0, 0(SP)
+     .      .      442f2e: MOVQ $0x50fa20, 0x8(SP)
+     .      .      442f37: MOVQ $go.itab.convertT2I.SliceContainer.convertT2I.Container(SB), 0x10(SP)
+     .      .      442f40: LEAQ 0x60(SP), BX
+     .      .      442f45: MOVQ BX, 0x18(SP)
+     .    109      442f4a: CALL runtime.convT2I(SB)
+     2      2      442f4f: MOVQ 0x20(SP), BX
+     .      .      442f54: MOVQ BX, 0x50(SP)
+     .      .      442f59: MOVQ 0x28(SP), BX
+     .      .      442f5e: MOVQ BX, 0x58(SP)
+    11     11    85: c2 = ReuseStructContainer(value)
+     .      .      442f63: MOVQ 0x80(SP), BX
+     1      1      442f6b: MOVQ BX, 0(SP)
+     .      .      442f6f: MOVQ 0x88(SP), BX
+     2      2      442f77: MOVQ BX, 0x8(SP)
+     .      .      442f7c: MOVQ 0x90(SP), BX
+     4      4      442f84: MOVQ BX, 0x10(SP)
+     1      1      442f89: CALL convertT2I.ReuseStructContainer(SB)
+     .      .      442f8e: MOVQ 0x18(SP), BX
+     .      .      442f93: MOVQ BX, 0x38(SP)
+     .      .      442f98: MOVQ go.itab.*convertT2I.StructContainer.convertT2I.Container(SB), AX
+     .      .      442fa0: XORQ BP, BP
+     3      3      442fa3: CMPQ BP, AX
+     .      .      442fa6: JE 0x44300f
+     .      .      442fa8: MOVQ 0x38(SP), BX
+     .      .      442fad: MOVQ BX, 0x48(SP)
+     .      .      442fb2: MOVQ AX, 0x40(SP)
+     7     24    87: return (c1.Length() == c2.Length())
+     .      .      442fb7: MOVQ 0x58(SP), BX
+     .      .      442fbc: MOVQ BX, 0(SP)
+     .      .      442fc0: MOVQ 0x50(SP), BX
+     .      .      442fc5: MOVQ 0x20(BX), BX
+     .     15      442fc9: CALL BX
+     .      .      442fcb: MOVQ 0x8(SP), BX
+     5      5      442fd0: MOVQ BX, 0x30(SP)
+     .      .      442fd5: MOVQ 0x48(SP), BX
+     1      1      442fda: MOVQ BX, 0(SP)
+     .      .      442fde: MOVQ 0x40(SP), BX
+     .      .      442fe3: MOVQ 0x20(BX), BX
+     .      2      442fe7: CALL BX
+     .      .      442fe9: MOVQ 0x8(SP), AX
+     1      1      442fee: MOVQ 0x30(SP), BX
+     .      .      442ff3: CMPQ AX, BX
+     .      .      442ff6: JE 0x443005
+     .      .      442ff8: MOVL $0x0, 0x98(SP)
+     .      .      443000: ADDQ $0x78, SP
+     .      .      443004:    RET
+     .      .      443005: MOVL $0x1, 0x98(SP)
+     .      .      44300d: JMP 0x443000
+     .      .    85: c2 = ReuseStructContainer(value)
+     .      .      44300f: MOVQ $0x5172c0, 0(SP)
+     .      .      443017: MOVQ $0x50fa20, 0x8(SP)
+     .      .      443020: MOVQ $go.itab.*convertT2I.StructContainer.convertT2I.Container(SB), 0x10(SP)
+     .      .      443029: CALL runtime.typ2Itab(SB)
+     .      .      44302e: MOVQ 0x18(SP), AX
+     .      .      443033: JMP 0x442fa8
+     .      .      443038: ADDL AL, 0(AX)
+     .      .      44303a: ADDL AL, 0(AX)
+     .      .      44303c: ADDL AL, 0(AX)
+     .      .      44303e: ADDL AL, 0(AX)
+(pprof) 
