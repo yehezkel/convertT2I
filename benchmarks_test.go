@@ -5,7 +5,7 @@
 //and actually i need to choose between the following 2 options:
 //		type SampleDataType []byte
 //		or
-//		type SampleDataType interface{
+//		type SampleDataType struct{
 //			buffer []byte
 //		}
 //I choose the first one for simplicity and because it allows me to keep using the regular
